@@ -1,0 +1,414 @@
+{
+  "site": {
+    "brandName": "NgeShare",
+    "brandBadge": "CIRCLE",
+    "lang": "id",
+    "title": "NgeShare Circle — Buat momen hangout bareng teman makin spesial",
+    "description": "Upgrade hangoutmu into the next level. Belajar bersama, tumbuh bersama."
+  },
+  "nav": {
+    "links": [
+      {
+        "label": "Tentang",
+        "href": "#tentang"
+      },
+      {
+        "label": "Cara Kerja",
+        "href": "#cara-kerja"
+      },
+      {
+        "label": "Fitur",
+        "href": "#fitur"
+      },
+      {
+        "label": "FAQ",
+        "href": "#faq"
+      }
+    ],
+    "loginLabel": "Masuk",
+    "loginHref": "#",
+    "ctaLabel": "Unduh App",
+    "ctaHref": "#download"
+  },
+  "hero": {
+    "badge": "✦ APLIKASI HALAQAH PERTAMA DI DUNIA",
+    "title": "Buat momen hangout bareng teman makin spesial",
+    "subtitle1": "Upgrade hangoutmu into the next level!",
+    "subtitle2": "Jadikan setiap jam kumpulmu penuh cerita manis, ilmu yang nempel di hati, dan sahabat sefrekuensi yang selalu siap merangkul dalam kebaikan",
+    "primaryCta": {
+      "label": "Mulai Circle-ku",
+      "href": "#fasilitator"
+    },
+    "secondaryCta": {
+      "label": "Kenal Lebih Dekat",
+      "href": "#tentang"
+    },
+    "backgroundImage": "images/hero.jpg",
+    "backgroundPosition": "50% 30%",
+    "backgroundFallback": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1600&auto=format&fit=crop",
+    "stats": [
+      {
+        "value": "100+",
+        "label": "Circle Aktif"
+      },
+      {
+        "value": "1.000+",
+        "label": "Pengguna Terdaftar"
+      },
+      {
+        "value": "4.9★",
+        "label": "Rating App Store"
+      },
+      {
+        "value": "100%",
+        "label": "Konten Terverifikasi"
+      }
+    ]
+  },
+  "duluSekarang": {
+    "id": "tentang",
+    "badge": "DULU VS SEKARANG",
+    "title": "Hangout paling seru adalah saat kamu dan sahabatmu bisa tertawa lepas dan tumbuh semakin bijak bersama",
+    "subtitle1": "Dengan NgeShare, kita ubah definisi “hangout” into the next level.",
+    "subtitle2": "Di sini, kita hadirkan warna baru buat setiap agenda hangout agar makin berkesan",
+    "cards": [
+      {
+        "icon": "☹",
+        "title": "Obrolan Mengalir dengan Seru",
+        "desc": "Tonton bareng videonya, pelajari bareng materinya, dan nikmati diskusi hangat yang membuka wawasan"
+      },
+      {
+        "icon": "☺",
+        "title": "Circle yang Saling Menguatkan",
+        "desc": "Bersama menjadi sahabat yang saling hadir, mendengarkan, dan melangkah bersama dalam kebaikan"
+      }
+    ],
+    "banner": {
+      "icon": "💡",
+      "title": "Di mana aja pokoknya sama kamu",
+      "desc": "Kumpul di cafe, kampus, rumah, taman, atau malah tempat kerja? Di mana aja yang nyaman buat kamu dan sahabatmu tanpa perlu pusingin koneksi internet"
+    }
+  },
+  "kenalan": {
+    "badge": "KENALAN SAMA NGESHARE",
+    "title": "Temukan cara baru menikmati waktu luang",
+    "desc1": "Gabungkan keseruan hangout di tempat favoritmu dengan indahnya halaqah yang penuh tawa dan kehangatan.",
+    "desc2": "Setiap fitur dirancang untuk menghadirkan pengalaman belajar kelompok yang interaktif dan menyenangkan",
+    "video": {
+      "thumbnail": "images/pengenalan.jpg",
+      "thumbnailFallback": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop",
+      "videoUrl": "https://www.youtube.com/watch?v=L33nYyXrD6o",
+      "title": "Pengenalan Ngehsare",
+      "speaker": "Ust. Weemar Aditya"
+    },
+    "benefits": [
+      {
+        "icon": "🔒",
+        "title": "Konsisten Kebaikannya",
+        "desc": "Sahabat yang saling mengingatkan dalam kebaikan"
+      },
+      {
+        "icon": "💬",
+        "title": "Lebih dari Menonton",
+        "desc": "Diskusi nyata membuat ilmu lebih dalam dan melekat, sekaligus menambah keseruan hangout"
+      },
+      {
+        "icon": "⚡",
+        "title": "Ilmu Jadi Amal",
+        "desc": "Refleksi dan aktivitas menggerakkan dari tahu ke laku."
+      }
+    ]
+  },
+  "fitur": {
+    "id": "fitur",
+    "badge": "FITUR UTAMA",
+    "title": "Dirancang Sempurna untuk Upgrade Hangoutmu",
+    "items": [
+      {
+        "icon": "📅",
+        "title": "Materi Terpercaya",
+        "desc": "Kurikulum yang dirancang khusus untuk sesi belajar hangoutmu, materi yang disusun bertahap, lengkap dengan panduan diskusi."
+      },
+      {
+        "icon": "✔",
+        "title": "Pemateri Terpercaya",
+        "desc": "Konten yang dikemas dengan menarik dan autentik, disusun oleh pemateri terpercaya untuk memastikan pemahaman yang akurat."
+      },
+      {
+        "icon": "📥",
+        "title": "Mode Offline",
+        "desc": "Unduh modul video lengkap lebih awal agar masalah konektivitas tidak pernah mengganggu hangoutmu."
+      },
+      {
+        "icon": "⁂",
+        "title": "Kuis Interaktif",
+        "desc": "Perkuat setiap pelajaran dengan kuis interaktif dan tugas akhir untuk menguji dan memperdalam pemahaman."
+      }
+    ]
+  },
+  "caraKerja": {
+    "id": "cara-kerja",
+    "badge": "CARA KERJA",
+    "title": "Cukup tiga langkah mudah untuk menghadirkan suasana ngumpul yang hangat dan menginspirasi",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Agendakan & Realisasikan",
+        "desc": "Ajak circlemu dan atur lokasi hangout di manapun kalian nyaman."
+      },
+      {
+        "number": "02",
+        "title": "Unduh & Siapkan",
+        "desc": "Unduh file video offline langsung ke perangkatmu."
+      },
+      {
+        "number": "03",
+        "title": "Kumpul & Belajar",
+        "desc": "Bertemu langsung, putar video, dan tumbuhkan diskusi yang seru dan bermakna."
+      }
+    ]
+  },
+  "komunitas": {
+    "badge": "PENGALAMAN KOMUNITAS",
+    "title": "Belajar dan Tumbuh Bersama NgeShare",
+    "sideText": "Setiap langkah meraih ilmu selalu teriring kebaikan. Jangan biarkan ilmu hanya mengendap di balik memori ponselmu. Untuk kelompok kecil di mana obrolan bermakna terjadi secara alami.",
+    "items": [
+      {
+        "image": "images/komunitas-1.jpg",
+        "imageFallback": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop",
+        "caption": "Kumpul belajar sambil arisan? Bisa banget nobar di rumah kayak kak Essy ini!"
+      },
+      {
+        "image": "images/komunitas-2.jpg",
+        "imageFallback": "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=800&auto=format&fit=crop",
+        "caption": "Hangout Circle kak Juliardi yang super santai, di mana aja yang penting ngumpul!"
+      },
+      {
+        "image": "images/komunitas-3.jpg",
+        "imageFallback": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop",
+        "caption": "Nobar sambil ngopi bareng circle di cafe — belajar di mana aja bisa!"
+      },
+      {
+        "image": "images/komunitas-4.jpg",
+        "imageFallback": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop",
+        "caption": "Makan bareng circle setelah nobar — kenyang ilmunya, kenyang juga perutnya!"
+      }
+    ]
+  },
+  "fasilitator": {
+    "id": "fasilitator",
+    "badge": "UNTUK FASILITATOR",
+    "title": "Jadi Fasilitator dan buat Circle-mu sekarang!",
+    "desc": "Jadikan hari-harimu lebih berwarna dengan dikelilingi sahabat yang saling menginspirasi. Yuk, buat momen hangoutmu jadi lebih hangat dan bermakna!",
+    "image": "images/fasilitator.jpg",
+    "imageFallback": "https://images.unsplash.com/photo-1559223607-a43c990c692c?q=80&w=1000&auto=format&fit=crop",
+    "points": [
+      {
+        "icon": "🌐",
+        "title": "Buat Circle privat",
+        "desc": "Atur anggota, privasi, dan ritme belajar mandiri."
+      },
+      {
+        "icon": "📋",
+        "title": "Akses panduan fasilitator",
+        "desc": "Dapatkan panduan diskusi terstruktur gratis."
+      },
+      {
+        "icon": "📅",
+        "title": "Jadwalkan Hangout",
+        "desc": "Sesuaikan jadwal kumpul bersama Circle."
+      },
+      {
+        "icon": "💬",
+        "title": "Raih pahala berkelanjutan (Sadaqah Jariyah)",
+        "desc": "Setiap ilmu yang diamalkan jadi timbangan kebaikan."
+      }
+    ],
+    "primaryCta": {
+      "label": "Jadi Fasilitator",
+      "href": "#"
+    },
+    "secondaryCta": {
+      "label": "Unduh NgeShare",
+      "href": "#download"
+    }
+  },
+  "testimoni": {
+    "badge": "KATA MEREKA",
+    "title": "Cerita Hangat dari Teman-teman Kita",
+    "items": [
+      {
+        "stars": 5,
+        "text": "Dulu nonton kajian sendirian terus lupa. Sekarang kita diskusi langsung setelah nonton — ilmunya jauh lebih nempel.",
+        "name": "Aisha R.",
+        "role": "Fasilitator · Jakarta",
+        "initial": "A",
+        "color": "#5b8def"
+      },
+      {
+        "stars": 5,
+        "text": "Fitur offline-nya killer banget. Kita tinggal di daerah yang sinyalnya susah, tapi Hangout tetap bisa jalan lancar.",
+        "name": "Faiz M.",
+        "role": "Anggota · Bandung",
+        "initial": "F",
+        "color": "#6c6cf5"
+      },
+      {
+        "stars": 5,
+        "text": "Suka banget karena kontennya dari ustaz terverifikasi. Gak khawatir soal kebenaran materinya — tinggal belajar aja.",
+        "name": "Ummu Salma",
+        "role": "Fasilitator · Surabaya",
+        "initial": "U",
+        "color": "#4caf8a"
+      },
+      {
+        "stars": 5,
+        "text": "Circle kami sudah 6 bulan aktif. Kita jadi punya rutinitas kajian yang konsisten — hal yang susah banget saya capai sendiri.",
+        "name": "Bilal H.",
+        "role": "Fasilitator · Makassar",
+        "initial": "B",
+        "color": "#8b5cf6"
+      },
+      {
+        "stars": 5,
+        "text": "Kuisnya bikin seru! Anggota jadi lebih semangat hadir karena ada tantangan bareng di setiap sesi.",
+        "name": "Nadia K.",
+        "role": "Anggota · Yogyakarta",
+        "initial": "N",
+        "color": "#e79a2e"
+      },
+      {
+        "stars": 5,
+        "text": "Sebagai ibu rumah tangga, susah cari waktu belajar. NgeShare bantu saya tetap terhubung sama ilmu bareng teman-teman.",
+        "name": "Fatimah Z.",
+        "role": "Anggota · Medan",
+        "initial": "F",
+        "color": "#e75d8a"
+      }
+    ]
+  },
+  "faq": {
+    "id": "faq",
+    "badge": "TANYA JAWAB",
+    "title": "Ada pertanyaan sebelum kamu mulai?",
+    "items": [
+      {
+        "q": "Apa itu NgeShare Circle?",
+        "a": "NgeShare Circle adalah komunitas kecil 3-8 orang yang kumpul rutin untuk nonton bareng materi kajian, diskusi, dan saling menguatkan dalam kebaikan."
+      },
+      {
+        "q": "Apakah saya harus membuat Circle sendiri?",
+        "a": "Tidak harus. Kamu bisa buat Circle baru sebagai Fasilitator, atau gabung ke Circle temanmu lewat link undangan."
+      },
+      {
+        "q": "Berapa banyak orang dalam satu Circle?",
+        "a": "Idealnya 3-8 orang agar diskusi tetap hangat dan semua kebagian bicara."
+      },
+      {
+        "q": "Bisakah saya bergabung ke lebih dari satu Circle?",
+        "a": "Bisa. Kamu bisa gabung ke beberapa Circle sekaligus, misalnya Circle kampus dan Circle kantor."
+      },
+      {
+        "q": "Apakah NgeShare gratis?",
+        "a": "Ya, gratis untuk mulai. Materi dasar dan fitur Circle tersedia gratis di iOS dan Android."
+      },
+      {
+        "q": "Apakah Hangout harus offline?",
+        "a": "Tidak harus. Kamu bisa kumpul offline di cafe, rumah, atau kampus. Unduh dulu videonya supaya lancar tanpa internet."
+      },
+      {
+        "q": "Siapa yang bisa jadi Fasilitator?",
+        "a": "Siapa saja yang mau mengajak kebaikan. Kamu dapat panduan diskusi gratis dan bisa atur ritme belajar Circle-mu."
+      },
+      {
+        "q": "Di mana saya bisa mengunduh NgeShare?",
+        "a": "Tersedia gratis di App Store dan Google Play. Klik tombol Unduh di bawah."
+      }
+    ]
+  },
+  "download": {
+    "id": "download",
+    "badge": "MULAI GRATIS",
+    "title": "Siap gunakan waktu layarmu untuk sesuatu yang bermakna?",
+    "desc": "Bergabung dengan ribuan circle yang membangun komunitas lokal autentik hari ini. Tersedia gratis di iOS dan Android.",
+    "appstore": {
+      "label": "Unduh di App Store",
+      "href": "#"
+    },
+    "playstore": {
+      "label": "Unduh di Google Play",
+      "href": "#"
+    },
+    "phoneImage": "images/app-phone.png",
+    "phoneFallback": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop"
+  },
+  "footer": {
+    "brandName": "NgeShare",
+    "tagline": "Belajar bersama. Perkuat deen bersama.",
+    "badges": [
+      {
+        "label": "App Store",
+        "href": "#"
+      },
+      {
+        "label": "Google Play",
+        "href": "#"
+      }
+    ],
+    "columns": [
+      {
+        "title": "NgeShare",
+        "links": [
+          {
+            "label": "Tentang",
+            "href": "#tentang"
+          },
+          {
+            "label": "Cara Kerja",
+            "href": "#cara-kerja"
+          },
+          {
+            "label": "Fitur",
+            "href": "#fitur"
+          }
+        ]
+      },
+      {
+        "title": "Sumber Daya",
+        "links": [
+          {
+            "label": "FAQ",
+            "href": "#faq"
+          },
+          {
+            "label": "Kebijakan Privasi",
+            "href": "#"
+          },
+          {
+            "label": "Syarat & Ketentuan",
+            "href": "#"
+          }
+        ]
+      },
+      {
+        "title": "Komunitas",
+        "links": [
+          {
+            "label": "Instagram",
+            "href": "#"
+          },
+          {
+            "label": "YouTube",
+            "href": "#"
+          },
+          {
+            "label": "Kontak",
+            "href": "#"
+          }
+        ]
+      }
+    ],
+    "copyright": "© 2025 NgeShare. Semua hak dilindungi.",
+    "madeWith": "Dibuat dengan cinta untuk umat."
+  }
+}

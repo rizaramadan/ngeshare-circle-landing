@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NgeShare Circle — Landing Page</title>
+<!-- CARA EDIT: ubah semua teks, link, gambar di file content.json saja. HTML ini otomatis me-render. -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+      colors: {
+        brand: { 50:'#eef2ff',100:'#e0e7ff',500:'#4f46e5',600:'#4338ca',700:'#3730a3' },
+        cream: '#f4f2ed',
+        ink: '#111827'
+      },
+      boxShadow: { card: '0 8px 30px rgba(17,24,39,0.06)' }
+    }
+  }
+}
+function landingApp() {
+  return {
+    data: null,
+    openFaq: null,
+    mobileOpen: false,
+    async init() {
+      try {
+        const r = await fetch('content.json');
+        this.data = await r.json();
+        document.title = this.data.site.title;
+        // Auto-reload: cek content.json tiap 2 detik, update otomatis kalau berubah.
+        // Cukup edit + save content.json, halaman ikut berubah tanpa refresh.
+        let last = JSON.stringify(this.data);
+        setInterval(async () => {
+          try {
+            const rr = await fetch('content.json?t=' + Date.now(), { cache: 'no-store' });
+            const fresh = await rr.json();
+            const s = JSON.stringify(fresh);
+            if (s !== last) { last = s; this.data = fresh; document.title = fresh.site.title; }
+          } catch(e) { /* abaikan, coba lagi 2 detik berikutnya */ }
+        }, 2000);
+      } catch(e) { console.error('Gagal load content.json', e); }
+    },
+    img(src, fallback) {
+      // pakai gambar lokal jika ada, kalau 404 pakai fallback
+      return src;
+    },
+    onImgError(el, fallback) {
+      if (el.dataset.fbk) return;
+      el.dataset.fbk = '1';
+      el.src = fallback;
+    }
+  }
+}
+</script>
+<style>
+html{scroll-behavior:smooth}
+body{background:#fff;color:#111827}
+.hero-overlay{background:linear-gradient(90deg,rgba(17,20,45,.82) 0%,rgba(17,20,45,.55) 45%,rgba(17,20,45,.15) 100%)}
+.no-scrollbar::-webkit-scrollbar{display:none}
+.no-scrollbar{scrollbar-width:none}
+</style>
+</head>
+<body x-data="landingApp()" x-init="init()" class="font-sans antialiased">
+
+<template x-if="!data">
+  <div class="min-h-screen flex items-center justify-center text-gray-500">Memuat content.json…</div>
+</template>
+
+<template x-if="data">
+<div>
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-5 h-[68px] flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <span class="text-[26px] font-extrabold text-brand-600 tracking-tight" x-text="data.site.brandName"></span>
+        <span class="text-[11px] font-bold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full tracking-wide" x-text="data.site.brandBadge"></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-[15px] text-gray-500 font-medium">
+        <template x-for="l in data.nav.links" :key="l.label">
+          <a :href="l.href" class="hover:text-gray-900" x-text="l.label"></a>
+        </template>
+      </nav>
+      <div class="hidden md:flex items-center gap-5">
+        <a :href="data.nav.loginHref" class="text-gray-500 font-semibold" x-text="data.nav.loginLabel"></a>
+        <a :href="data.nav.ctaHref" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2">
+          <span x-text="data.nav.ctaLabel"></span><span>↗</span>
+        </a>
+      </div>
+      <button class="md:hidden p-2" @click="mobileOpen=!mobileOpen">☰</button>
+    </div>
+    <div x-show="mobileOpen" class="md:hidden border-t px-5 py-4 space-y-3 bg-white">
+      <template x-for="l in data.nav.links" :key="l.label">
+        <a :href="l.href" @click="mobileOpen=false" class="block text-gray-700" x-text="l.label"></a>
+      </template>
+      <a :href="data.nav.ctaHref" class="block text-center bg-brand-600 text-white rounded-xl py-2.5 font-semibold" x-text="data.nav.ctaLabel"></a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="bg-cream pt-8 md:pt-12 pb-16">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="relative rounded-[28px] overflow-hidden min-h-[540px] flex">
+        <img :src="data.hero.backgroundImage" :onerror="`this.onerror=null;this.src='${data.hero.backgroundFallback}'`" class="absolute inset-0 w-full h-full object-cover" :style="'object-position:' + (data.hero.backgroundPosition || '50% 50%')" alt="Hangout" />
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="relative p-8 md:p-14 max-w-2xl flex flex-col justify-center">
+          <span class="inline-flex w-fit text-[12px] md:text-[13px] font-semibold tracking-wide text-white/90 border border-white/30 rounded-full px-4 py-1.5 bg-white/10" x-text="data.hero.badge"></span>
+          <h1 class="mt-5 text-white font-extrabold leading-[1.05] text-[36px] md:text-[56px] tracking-tight" x-text="data.hero.title"></h1>
+          <p class="mt-5 text-white/80 text-[16px] md:text-[18px] leading-relaxed">
+            <span x-text="data.hero.subtitle1"></span><br/>
+            <span x-text="data.hero.subtitle2"></span>
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a :href="data.hero.primaryCta.href" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3.5 rounded-2xl flex items-center gap-2">
+              <span x-text="data.hero.primaryCta.label"></span><span>→</span>
+            </a>
+            <a :href="data.hero.secondaryCta.href" class="bg-white text-brand-600 font-semibold px-6 py-3.5 rounded-2xl flex items-center gap-2 border">
+              <span x-text="data.hero.secondaryCta.label"></span><span class="text-black">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- STATS overlap -->
+      <div class="relative -mt-12 mx-2 md:mx-8 bg-white rounded-[22px] shadow-card border border-gray-100 grid grid-cols-2 md:grid-cols-4 px-6 py-6 text-center">
+        <template x-for="s in data.hero.stats" :key="s.label">
+          <div class="py-2">
+            <div class="text-[28px] md:text-[36px] font-extrabold tracking-tight" x-text="s.value"></div>
+            <div class="text-gray-500 text-[14px]" x-text="s.label"></div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- DULU VS SEKARANG -->
+  <section :id="data.duluSekarang.id" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-5 text-center">
+      <span class="text-[12px] font-semibold tracking-wider text-gray-500 border rounded-full px-4 py-1.5" x-text="data.duluSekarang.badge"></span>
+      <h2 class="mt-5 max-w-3xl mx-auto text-[28px] md:text-[40px] font-extrabold leading-tight tracking-tight" x-text="data.duluSekarang.title"></h2>
+      <p class="mt-4 text-gray-500 text-[16px] md:text-[18px]"><span x-text="data.duluSekarang.subtitle1"></span><br/><span x-text="data.duluSekarang.subtitle2"></span></p>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-5 text-left">
+        <template x-for="c in data.duluSekarang.cards" :key="c.title">
+          <div class="border border-gray-200 rounded-[22px] p-7 bg-white shadow-card">
+            <div class="flex items-center gap-3">
+              <span class="w-11 h-11 rounded-xl bg-red-50 flex items-center justify-center text-xl" x-text="c.icon"></span>
+              <h3 class="font-bold text-red-500 text-[17px]" x-text="c.title"></h3>
+            </div>
+            <p class="mt-6 text-gray-600 leading-relaxed" x-text="c.desc"></p>
+          </div>
+        </template>
+      </div>
+      <div class="mt-5 bg-[#2f3bdf] text-white rounded-[22px] p-7 md:p-8 text-left shadow-card">
+        <div class="flex items-center gap-3">
+          <span class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl" x-text="data.duluSekarang.banner.icon"></span>
+          <h3 class="font-bold text-[17px]" x-text="data.duluSekarang.banner.title"></h3>
+        </div>
+        <p class="mt-6 text-white/85 leading-relaxed" x-text="data.duluSekarang.banner.desc"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KENALAN -->
+  <section class="bg-cream py-16 md:py-24 border-y">
+    <div class="max-w-6xl mx-auto px-5">
+      <span class="text-[12px] font-semibold tracking-wider text-gray-500 bg-white border rounded-full px-4 py-1.5" x-text="data.kenalan.badge"></span>
+      <h2 class="mt-4 text-[28px] md:text-[38px] font-extrabold tracking-tight" x-text="data.kenalan.title"></h2>
+      <p class="mt-3 text-gray-500 max-w-3xl text-[16px] md:text-[18px] leading-relaxed"><span x-text="data.kenalan.desc1"></span><br/><span x-text="data.kenalan.desc2"></span></p>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-8 items-start">
+        <div class="bg-white rounded-[24px] overflow-hidden border shadow-card">
+          <div class="relative">
+            <img :src="data.kenalan.video.thumbnail" :onerror="`this.onerror=null;this.src='${data.kenalan.video.thumbnailFallback}'`" class="w-full h-[280px] md:h-[320px] object-cover" alt="Video" />
+            <a :href="data.kenalan.video.videoUrl" class="absolute inset-0 flex items-center justify-center">
+              <span class="w-16 h-16 bg-white/95 rounded-full flex items-center justify-center text-brand-600 text-2xl shadow">▶</span>
+            </a>
+          </div>
+          <div class="p-5">
+            <div class="font-bold" x-text="data.kenalan.video.title"></div>
+            <div class="text-gray-500 text-sm" x-text="data.kenalan.video.speaker"></div>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <template x-for="b in data.kenalan.benefits" :key="b.title">
+            <div class="bg-white border rounded-2xl p-5 flex gap-4 shadow-card">
+              <span class="w-12 h-12 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center text-2xl" x-text="b.icon"></span>
+              <div>
+                <div class="font-bold text-[17px]" x-text="b.title"></div>
+                <div class="text-gray-500 mt-1 leading-relaxed" x-text="b.desc"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FITUR -->
+  <section :id="data.fitur.id" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-5 text-center">
+      <span class="text-[12px] font-semibold tracking-wider text-gray-500 border rounded-full px-4 py-1.5" x-text="data.fitur.badge"></span>
+      <h2 class="mt-5 text-[28px] md:text-[38px] font-extrabold tracking-tight" x-text="data.fitur.title"></h2>
+      <div class="mt-10 grid md:grid-cols-2 gap-5 text-left">
+        <template x-for="f in data.fitur.items" :key="f.title">
+          <div class="border border-gray-200 rounded-[20px] p-7 bg-white shadow-card">
+            <span class="w-11 h-11 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl" x-text="f.icon"></span>
+            <h3 class="mt-4 font-bold text-[18px]" x-text="f.title"></h3>
+            <p class="mt-2 text-gray-500 leading-relaxed" x-text="f.desc"></p>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARA KERJA -->
+  <section :id="data.caraKerja.id" class="bg-cream py-16 md:py-24 border-y">
+    <div class="max-w-6xl mx-auto px-5 text-center">
+      <span class="text-[12px] font-semibold tracking-wider text-gray-500 bg-white border rounded-full px-4 py-1.5" x-text="data.caraKerja.badge"></span>
+      <h2 class="mt-5 max-w-3xl mx-auto text-[28px] md:text-[38px] font-extrabold leading-tight tracking-tight" x-text="data.caraKerja.title"></h2>
+      <div class="mt-10 grid md:grid-cols-3 gap-5 text-left">
+        <template x-for="s in data.caraKerja.steps" :key="s.number">
+          <div class="bg-white rounded-[22px] p-7 border shadow-card">
+            <div class="text-[44px] font-extrabold text-[#c9c6e0] leading-none" x-text="s.number"></div>
+            <h3 class="mt-4 font-bold text-[18px]" x-text="s.title"></h3>
+            <p class="mt-3 text-gray-500 leading-relaxed" x-text="s.desc"></p>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- KOMUNITAS -->
+  <section class="py-16 md:py-24 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-5">
+      <span class="text-[12px] font-semibold tracking-wider text-gray-500 border rounded-full px-4 py-1.5" x-text="data.komunitas.badge"></span>
+      <div class="mt-4 grid md:grid-cols-2 gap-6 items-end">
+        <h2 class="text-[28px] md:text-[38px] font-extrabold leading-tight tracking-tight" x-text="data.komunitas.title"></h2>
+        <p class="text-gray-500 leading-relaxed" x-text="data.komunitas.sideText"></p>
+      </div>
+    </div>
+    <div class="mt-8 max-w-6xl mx-auto px-5">
+      <div class="flex gap-4 overflow-x-auto no-scrollbar snap-x pb-2">
+        <template x-for="k in data.komunitas.items" :key="k.caption">
+          <figure class="min-w-[320px] md:min-w-[440px] snap-start">
+            <img :src="k.image" :onerror="`this.onerror=null;this.src='${k.imageFallback}'`" class="w-full h-[220px] md:h-[260px] object-cover rounded-xl" alt="Komunitas" />
+            <figcaption class="mt-3 text-gray-600 text-[15px] leading-relaxed" x-text="k.caption"></figcaption>
+          </figure>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- FASILITATOR -->
+  <section :id="data.fasilitator.id" class="bg-cream py-16 md:py-24 border-y">
+    <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-10 items-start">
+      <div>
+        <span class="text-[12px] font-semibold tracking-wider text-gray-500 bg-white border rounded-full px-4 py-1.5" x-text="data.fasilitator.badge"></span>
+        <h2 class="mt-4 text-[30px] md:text-[40px] font-extrabold leading-tight tracking-tight" x-text="data.fasilitator.title"></h2>
+        <p class="mt-4 text-gray-500 text-[17px] leading-relaxed" x-text="data.fasilitator.desc"></p>
+        <div class="mt-7 space-y-3">
+          <template x-for="p in data.fasilitator.points" :key="p.title">
+            <div class="bg-white border rounded-2xl p-4 flex gap-4 items-start">
+              <span class="w-11 h-11 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center text-xl" x-text="p.icon"></span>
+              <div>
+                <div class="font-bold" x-text="p.title"></div>
+                <div class="text-gray-500 text-[15px]" x-text="p.desc"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a :href="data.fasilitator.primaryCta.href" class="bg-[#7c5cf0] hover:opacity-90 text-white font-semibold px-6 py-3 rounded-xl" x-text="data.fasilitator.primaryCta.label + ' ↗'"></a>
+          <a :href="data.fasilitator.secondaryCta.href" class="bg-white border font-semibold px-6 py-3 rounded-xl" x-text="data.fasilitator.secondaryCta.label"></a>
+        </div>
+      </div>
+      <div class="md:sticky md:top-24">
+        <img :src="data.fasilitator.image" :onerror="`this.onerror=null;this.src='${data.fasilitator.imageFallback}'`" class="w-full h-[420px] md:h-[560px] object-cover rounded-[24px]" alt="Fasilitator" />
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-5 text-center">
+      <span class="text-[12px] font-semibold tracking-wider text-gray-500 border rounded-full px-4 py-1.5" x-text="data.testimoni.badge"></span>
+      <h2 class="mt-5 text-[28px] md:text-[38px] font-extrabold tracking-tight" x-text="data.testimoni.title"></h2>
+      <div class="mt-10 grid md:grid-cols-3 gap-5 text-left">
+        <template x-for="t in data.testimoni.items" :key="t.name">
+          <div class="border border-gray-200 rounded-[20px] p-6 bg-white shadow-card flex flex-col">
+            <div class="text-amber-400 tracking-[3px]">★★★★★</div>
+            <p class="mt-4 text-gray-600 leading-relaxed flex-1" x-text="'“'+t.text+'”'"></p>
+            <div class="mt-5 pt-4 border-t flex items-center gap-3">
+              <span class="w-10 h-10 rounded-full text-white font-bold flex items-center justify-center" :style="`background:${t.color}`" x-text="t.initial"></span>
+              <div>
+                <div class="font-bold text-[15px]" x-text="t.name"></div>
+                <div class="text-gray-500 text-[13px]" x-text="t.role"></div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section :id="data.faq.id" class="bg-cream py-16 md:py-24 border-y">
+    <div class="max-w-3xl mx-auto px-5 text-center">
+      <span class="text-[12px] font-semibold tracking-wider text-gray-500 bg-white border rounded-full px-4 py-1.5" x-text="data.faq.badge"></span>
+      <h2 class="mt-5 text-[28px] md:text-[38px] font-extrabold tracking-tight" x-text="data.faq.title"></h2>
+      <div class="mt-10 space-y-3 text-left">
+        <template x-for="(f,i) in data.faq.items" :key="f.q">
+          <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+            <button @click="openFaq === i ? openFaq=null : openFaq=i" class="w-full flex items-center justify-between gap-4 px-5 py-4 text-left font-semibold">
+              <span x-text="f.q"></span>
+              <span class="w-8 h-8 shrink-0 rounded-full border flex items-center justify-center text-gray-500" x-text="openFaq===i ? '–' : '+'"></span>
+            </button>
+            <div x-show="openFaq===i" x-collapse class="px-5 pb-5 text-gray-600 leading-relaxed" x-text="f.a"></div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- DOWNLOAD CTA -->
+    <div class="max-w-6xl mx-auto px-5 mt-16">
+      <div :id="data.download.id" class="bg-gradient-to-br from-[#4f46e5] to-[#2f3bdf] rounded-[28px] p-8 md:p-14 grid md:grid-cols-2 gap-10 items-center text-white overflow-hidden">
+        <div>
+          <span class="text-[12px] font-bold tracking-wider bg-white/15 rounded-full px-4 py-1.5" x-text="data.download.badge"></span>
+          <h2 class="mt-5 text-[28px] md:text-[42px] font-extrabold leading-tight" x-text="data.download.title"></h2>
+          <p class="mt-4 text-white/80 text-[16px] md:text-[18px] leading-relaxed" x-text="data.download.desc"></p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a :href="data.download.appstore.href" class="bg-white text-gray-900 font-semibold px-6 py-3 rounded-xl" x-text="data.download.appstore.label"></a>
+            <a :href="data.download.playstore.href" class="bg-white text-gray-900 font-semibold px-6 py-3 rounded-xl" x-text="data.download.playstore.label"></a>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <img :src="data.download.phoneImage" :onerror="`this.onerror=null;this.src='${data.download.phoneFallback}'`" class="w-full max-w-[360px] h-[380px] object-cover rounded-xl" alt="App" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-14">
+    <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-[1.2fr_1fr_1fr_1fr] gap-10">
+      <div>
+        <div class="text-[26px] font-extrabold text-brand-600" x-text="data.footer.brandName"></div>
+        <p class="mt-3 text-gray-500" x-text="data.footer.tagline"></p>
+        <div class="mt-4 flex gap-2">
+          <template x-for="b in data.footer.badges" :key="b.label">
+            <a :href="b.href" class="text-[13px] text-gray-500 border rounded-lg px-3 py-1.5" x-text="b.label"></a>
+          </template>
+        </div>
+      </div>
+      <template x-for="c in data.footer.columns" :key="c.title">
+        <div>
+          <div class="font-bold" x-text="c.title"></div>
+          <div class="mt-4 space-y-3">
+            <template x-for="l in c.links" :key="l.label">
+              <a :href="l.href" class="block text-gray-500 hover:text-gray-900" x-text="l.label"></a>
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="max-w-6xl mx-auto px-5 mt-12 pt-6 border-t flex flex-col md:flex-row justify-between gap-2 text-gray-500 text-[15px]">
+      <span x-text="data.footer.copyright"></span>
+      <span x-text="data.footer.madeWith"></span>
+    </div>
+  </footer>
+</div>
+</template>
+
+</body>
+</html>
